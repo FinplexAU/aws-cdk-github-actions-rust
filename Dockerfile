@@ -15,6 +15,7 @@ RUN rustup default stable
 RUN curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 RUN cargo binstall cargo-lambda -y
 RUN cargo lambda --version
+ENV CARGO_HOME=$HOME/.cargo
 
 COPY --from=golang:alpine /usr/local/go/ /usr/local/go/
 ENV PATH="/usr/local/go/bin:${PATH}"
