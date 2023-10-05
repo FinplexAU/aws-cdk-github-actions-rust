@@ -1,4 +1,4 @@
-FROM ziglang/static-base
+FROM alpine
 RUN apk --update --no-cache add nodejs npm python3 py3-pip jq curl bash git docker zig && \
 	ln -sf /usr/bin/python3 /usr/bin/python
 
