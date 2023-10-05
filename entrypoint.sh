@@ -97,12 +97,26 @@ ${output}
 	fi
 }
 
+function rustStuff(){
+	export ZIG_VERSION=0.11.0
+	apkArch=$(apk --print-arch) && curl -L https://ziglang.org/download/$ZIG_VERSION/zig-linux-$apkArch-$ZIG_VERSION.tar.xz | tar -J -x -C /usr/local \
+	   && ln -s /usr/local/zig-linux-$apkArch-$ZIG_VERSION/zig /usr/local/bin/zig ;
+	
+	curl https://sh.rustup.rs -sSf | sh -s -- --profile minimal -y
+	source "$HOME/.cargo/env"
+	rustup default stable
+	curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+	cargo binstall cargo-lambda -y
+	cargo lambda --version
+}
+
 function main(){
 	parseInputs
 	cd ${GITHUB_WORKSPACE}/${INPUT_WORKING_DIR}
 	installTypescript
 	installAwsCdk
 	installPipRequirements
+ 	rustStuff
 	runCdk ${INPUT_CDK_ARGS}
 }
 
