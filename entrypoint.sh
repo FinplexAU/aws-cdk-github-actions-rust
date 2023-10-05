@@ -106,7 +106,12 @@ function rustStuff(){
 	rustup default stable
 	curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 	cargo binstall cargo-lambda -y
-	cargo lambda --version
+ 	cargo binstall sccache --locked
+
+   	# sccache setup
+    	export SCCACHE_GHA_ENABLED=on
+     	export RUSTC_WRAPPER=$(which sccache)
+      	echo $RUSTC_WRAPPER
 }
 
 function main(){
