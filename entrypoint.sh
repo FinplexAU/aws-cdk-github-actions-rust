@@ -106,7 +106,7 @@ function rustStuff(){
 	rustup default stable
 	curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 	cargo binstall cargo-lambda -y
- 	cargo binstall sccache --locked
+ 	cargo binstall sccache --locked -y
 
    	# sccache setup
     	export SCCACHE_GHA_ENABLED=on
@@ -121,7 +121,9 @@ function main(){
 	installAwsCdk
 	installPipRequirements
  	rustStuff
+ 	sccache --show-stats
 	runCdk ${INPUT_CDK_ARGS}
+ 	sccache --show-stats
 }
 
 main
