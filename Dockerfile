@@ -1,6 +1,10 @@
 FROM alpine
+
 RUN apk --update --no-cache add nodejs npm python3 py3-pip jq curl bash git docker && \
 	ln -sf /usr/bin/python3 /usr/bin/python
+
+ENV ZIG_VERSION=0.12.0
+ENV apkArch=$(apk --print-arch)
 
 RUN apkArch=$(apk --print-arch) && curl -L https://ziglang.org/download/$ZIG_VERSION/zig-linux-$apkArch-$ZIG_VERSION.tar.xz | tar -J -x -C /usr/local \
    && ln -s /usr/local/zig-linux-$apkArch-$ZIG_VERSION/zig /usr/local/bin/zig ;
