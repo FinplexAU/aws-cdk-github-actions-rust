@@ -1,5 +1,5 @@
 FROM ghcr.io/cargo-lambda/cargo-lambda
-RUN apk --update --no-cache add nodejs npm python3 py3-pip jq curl bash git docker && \
+RUN apk --update --no-cache add python3 curl bash git && \
 	ln -sf /usr/bin/python3 /usr/bin/python
 
 COPY --from=golang:alpine /usr/local/go/ /usr/local/go/
