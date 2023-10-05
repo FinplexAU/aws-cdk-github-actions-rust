@@ -1,6 +1,6 @@
 FROM alpine
 
-RUN apk --update --no-cache add nodejs npm python3 py3-pip jq curl bash git docker build-base && \
+RUN apk --update --no-cache add nodejs npm python3 py3-pip jq curl bash git docker build-base libressl-dev && \
 	ln -sf /usr/bin/python3 /usr/bin/python
 
 COPY --from=golang:alpine /usr/local/go/ /usr/local/go/
