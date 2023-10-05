@@ -11,6 +11,7 @@ RUN apkArch=$(apk --print-arch) && curl -L https://ziglang.org/download/$ZIG_VER
 
 RUN curl https://sh.rustup.rs -sSf | sh -s -- --profile minimal -y
 ENV PATH="/root/.cargo/bin:${PATH}"
+RUN rustup default stable
 RUN curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 RUN cargo binstall cargo-lambda -y
 RUN cargo lambda --version
