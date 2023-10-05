@@ -44,7 +44,6 @@ function installAwsCdk(){
 }
 
 function installPipRequirements(){
-	pip install cargo-lambda
 	if [ -e "requirements.txt" ]; then
 		echo "Install requirements.txt"
 		if [ "${INPUT_DEBUG_LOG}" == "true" ]; then
