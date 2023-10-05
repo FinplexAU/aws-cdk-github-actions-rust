@@ -1,5 +1,5 @@
 FROM alpine
-RUN apk --update --no-cache add nodejs npm python3 py3-pip jq curl bash git docker zig && \
+RUN apk --update --no-cache add nodejs npm python3 py3-pip jq curl bash git docker && \
 	ln -sf /usr/bin/python3 /usr/bin/python
 
 RUN apkArch=$(apk --print-arch) && curl -L https://ziglang.org/download/$ZIG_VERSION/zig-linux-$apkArch-$ZIG_VERSION.tar.xz | tar -J -x -C /usr/local \
